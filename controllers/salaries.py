@@ -11,14 +11,24 @@ def create_salary(db: Session, user_id: int, salary_data: SalaryCreate):
     if not user:
         raise UserNotFoundException
 
-    salary = Salary(
-        user_id=user_id,
-        amount=salary_data.amount,
-        next_raise_date=salary_data.next_raise_date
-    )
-    db.add(salary)
-    db.commit()
-    return salary
+    existing_salary = db.scalar(select(Salary).where(Salary.user_id == user_id))
+
+    if existing_salary:
+        # Update salary
+        existing_salary.amount = salary_data.amount
+        existing_salary.next_raise_date = salary_data.next_raise_date
+        db.commit()
+        return existing_salary
+    else:
+        # new salary
+        salary = Salary(
+            user_id=user_id,
+            amount=salary_data.amount,
+            next_raise_date=salary_data.next_raise_date
+        )
+        db.add(salary)
+        db.commit()
+        return salary
 
 
 def get_salaries(db: Session, user_id: int):
