@@ -24,5 +24,5 @@ def register_user(user_data: schemas.UserCreate, db: Session = Depends(get_db)):
 
 
 @router.get("/self", response_model=schemas.LiteUser)
-def get_user_by_id(access_token: Annotated[str, Depends(apikey_scheme)],db: Session = Depends(get_db)):
+def get_user_by_id(access_token: Annotated[str, Depends(apikey_scheme)], db: Session = Depends(get_db)):
     return get_user_by_token(access_token=access_token, db=db)

@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, Numeric
 from sqlalchemy.orm import relationship, declarative_base
 
 
@@ -15,12 +15,14 @@ class User(Base):
 
     items = relationship("Item", back_populates="owner")
     tokens = relationship("Token", back_populates="user")
+    salaries = relationship("Salary", back_populates="user")
 
 
 class Token(Base):
     __tablename__ = "tokens"
     id = Column(Integer, primary_key=True, index=True)
     access_token = Column(String, unique=True, index=True)
+    expires_at = Column(DateTime, nullable=False)
 
     user_id = Column(Integer, ForeignKey("users.id"))
     user = relationship("User", back_populates="tokens")
@@ -36,3 +38,13 @@ class Item(Base):
 
     owner = relationship("User", back_populates="items")
 
+
+class Salary(Base):
+    __tablename__ = "salaries"
+
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    amount = Column(Integer)
+    next_raise_date = Column(DateTime)
+
+    user = relationship("User", back_populates="salaries")

@@ -1,5 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from typing import List, Optional
+from datetime import datetime
 
 
 class ItemBase(BaseModel):
@@ -45,3 +46,24 @@ class User(UserBase):
 
 class Token(BaseModel):
     access_token: str
+    expires_at: datetime
+
+    class Config:
+        orm_mode = True
+
+
+class SalaryBase(BaseModel):
+    amount: int
+    next_raise_date: datetime
+
+
+class SalaryCreate(SalaryBase):
+    pass
+
+
+class Salary(SalaryBase):
+    id: int
+    user_id: int
+
+    class Config:
+        orm_mode = True
