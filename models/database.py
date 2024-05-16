@@ -5,11 +5,6 @@ from sqlalchemy.orm import sessionmaker
 
 from dotenv import load_dotenv
 
-# DB_USER = "astashovivl"
-# DB_PASS = "WhTdQdMFTAxz8g05fz7CgPTr4jnKxB5b"
-# DB_HOST = "dpg-cp1g06u3e1ms738l4no0-a.frankfurt-postgres.render.com"
-# DB_NAME = "db_fastapi_6jhr"
-
 # Load .env file
 load_dotenv()
 

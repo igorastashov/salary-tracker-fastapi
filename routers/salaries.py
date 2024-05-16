@@ -2,10 +2,11 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from typing import List, Annotated
 
-from controllers.salaries import create_salary, get_salaries
+from controllers.salaries import create_salary
 from models import schemas
 from models.database import get_db
 from secure import apikey_scheme
+from views.salaries import get_salaries
 from views.users import get_user_by_token
 
 router = APIRouter()
@@ -22,7 +23,7 @@ def add_salary(
 
 
 @router.get("", response_model=List[schemas.Salary])
-def read_salaries(
+def read_salary_and_next_raise(
     access_token: Annotated[str, Depends(apikey_scheme)],
     db: Session = Depends(get_db)
 ):
