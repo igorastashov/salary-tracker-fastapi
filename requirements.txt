@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+sqlalchemy
+alembic
+pydantic
+passlib
+bcrypt
+pytest
+pytest-asyncio
+pytest-cov
+gunicorn
+psycopg2-binary
