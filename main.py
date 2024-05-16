@@ -22,3 +22,9 @@ app.include_router(
     router=salaries_router,
     prefix='/salaries'
 )
+
+
+@app.get("/")
+async def root():
+    return {"message": "Добро пожаловать в наш сервис просмотра текущей зарплаты и даты следующего повышения!"}
+
