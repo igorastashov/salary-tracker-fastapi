@@ -3,7 +3,8 @@ from datetime import datetime
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from exceptions.custom_exceptions import ExpiredTokenException, UnauthorizedException
+from exceptions.custom_exceptions import (ExpiredTokenException,
+                                          UnauthorizedException)
 from models import core
 from models.core import Token
 

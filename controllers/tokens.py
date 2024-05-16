@@ -4,10 +4,8 @@ from datetime import datetime, timedelta
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from exceptions.custom_exceptions import (
-    IncorrectCredentialsException,
-    UserNotFoundException,
-)
+from exceptions.custom_exceptions import (IncorrectCredentialsException,
+                                          UserNotFoundException)
 from models.core import Token, User
 from models.schemas import UserAuth
 from secure import pwd_context
