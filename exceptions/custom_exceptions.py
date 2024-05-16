@@ -1,5 +1,9 @@
 from fastapi import HTTPException
-from starlette.status import HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED
+from starlette.status import (
+    HTTP_400_BAD_REQUEST,
+    HTTP_401_UNAUTHORIZED,
+    HTTP_404_NOT_FOUND,
+)
 
 
 class UserNotFoundException(HTTPException):
@@ -9,12 +13,17 @@ class UserNotFoundException(HTTPException):
 
 class IncorrectCredentialsException(HTTPException):
     def __init__(self):
-        super().__init__(status_code=HTTP_400_BAD_REQUEST, detail="Incorrect username or password")
+        super().__init__(
+            status_code=HTTP_400_BAD_REQUEST, detail="Incorrect username or password"
+        )
 
 
 class UserAlreadyExistsException(HTTPException):
     def __init__(self):
-        super().__init__(status_code=HTTP_400_BAD_REQUEST, detail="User with this email already exists!")
+        super().__init__(
+            status_code=HTTP_400_BAD_REQUEST,
+            detail="User with this email already exists!",
+        )
 
 
 class UnauthorizedException(HTTPException):

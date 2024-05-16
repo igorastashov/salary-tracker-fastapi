@@ -1,10 +1,9 @@
-from controllers.tokens import create_token
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
+from controllers.tokens import create_token
 from models import schemas
 from models.database import get_db
-
 
 router = APIRouter()
 

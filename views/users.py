@@ -1,8 +1,9 @@
 from datetime import datetime
+
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from exceptions.custom_exceptions import UnauthorizedException, ExpiredTokenException
 
+from exceptions.custom_exceptions import ExpiredTokenException, UnauthorizedException
 from models import core
 from models.core import Token
 
@@ -16,9 +17,6 @@ def get_user_by_token(access_token: str, db: Session):
     if token:
         if token.expires_at < datetime.utcnow():
             raise ExpiredTokenException()
-        return {
-            "id": token.user.id,
-            "email": token.user.email
-        }
+        return {"id": token.user.id, "email": token.user.email}
     else:
         raise UnauthorizedException()

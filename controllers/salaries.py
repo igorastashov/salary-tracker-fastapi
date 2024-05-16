@@ -1,5 +1,5 @@
-from sqlalchemy.orm import Session
 from sqlalchemy import select
+from sqlalchemy.orm import Session
 
 from exceptions.custom_exceptions import UserNotFoundException
 from models.core import Salary, User
@@ -24,7 +24,7 @@ def create_salary(db: Session, user_id: int, salary_data: SalaryCreate):
         salary = Salary(
             user_id=user_id,
             amount=salary_data.amount,
-            next_raise_date=salary_data.next_raise_date
+            next_raise_date=salary_data.next_raise_date,
         )
         db.add(salary)
         db.commit()

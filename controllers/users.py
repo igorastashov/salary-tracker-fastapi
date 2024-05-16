@@ -1,10 +1,10 @@
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from exceptions.custom_exceptions import UserAlreadyExistsException
 from models.core import User
 from models.schemas import UserCreate
 from secure import pwd_context
-from exceptions.custom_exceptions import UserAlreadyExistsException
 
 
 def register(db: Session, user_data: UserCreate):
